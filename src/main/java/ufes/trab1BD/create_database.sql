@@ -1,8 +1,8 @@
-drop schema picpayDB;
-create schema picpayDB;
-use picpayDB;
+DROP SCHEMA picpayDB;
+CREATE SCHEMA picpayDB;
+USE picpayDB;
 
-create table user(
+CREATE TABLE user(
 	user_id int not null auto_increment,
     name varchar(255) not null,
     date_of_birth date,
@@ -10,7 +10,7 @@ create table user(
     primary key (user_id)
 );
 
-create table store(
+CREATE TABLE store(
 	store_id int not null auto_increment,
     name varchar(255) not null,
     balance float,
@@ -18,7 +18,7 @@ create table store(
     primary key (store_id)
 );
 
-create table purchase(
+CREATE TABLE purchase(
 	user_id int,
     store_id int,
     value float,
@@ -26,7 +26,7 @@ create table purchase(
     primary key (user_id, store_id, date)
 );
 
-create table transfer(
+CREATE TABLE transfer(
 	payer int,
     payee int,
     value float,
@@ -35,31 +35,41 @@ create table transfer(
 );
 
 
-alter table store 
-add foreign key (owner_id) references user(user_id) on delete set null;
+ALTER TABLE store 
+ADD FOREIGN KEY (owner_id) REFERENCES user(user_id) ON DELETE set null;
 
-alter table purchase 
-add foreign key (user_id) references user(user_id) on delete cascade;
+ALTER TABLE purchase 
+ADD FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE cascade;
 
-alter table purchase
-add foreign key (store_id) references store(store_id) on delete cascade;
+ALTER TABLE purchase
+ADD FOREIGN KEY (store_id) REFERENCES store(store_id) ON DELETE cascade;
 
-alter table transfer
-add foreign key (payer) references user(user_id) on delete cascade;
+ALTER TABLE transfer
+ADD FOREIGN KEY (payer) REFERENCES user(user_id) ON DELETE cascade;
 
-alter table transfer
-add foreign key (payee) references user(user_id) on delete cascade;
+ALTER TABLE transfer
+ADD FOREIGN KEY (payee) REFERENCES user(user_id) ON DELETE cascade;
 
-insert into user (name, date_of_birth, balance) VALUES
+ALTER TABLE user
+ADD CHECK balance > 0;
+
+ALTER TABLE store
+ADD CHECK balance > 0;
+
+INSERT INTO user (name, date_of_birth, balance) VALUES
 ("Danilo Erler Lima", "2001-03-03", 0),
 ("Enzo Baioco Cussuol", "2001-01-11", 99.99),
 ("Fernando Azevedo Peres", "2000-01-01", 0.99),
 ("Vitor Berger Bonella", "2001-06-18", 1000),
-("Luis Eduardo da Camara  Freire", "2001-10-15", 50.0);
+("Luis Eduardo da Camara Freire", "2000-11-29", 50.0),
+("Igor Mattos Varejão","2001-01-28", 1001),
+("Miguel de Oliveira Carlini", "2001-09-06", 300);
 
 
-insert into store (name, balance, owner_id) VALUES
+INSERT INTO store (name, balance, owner_id) VALUES
 ("Descartech", 0, 2),
 ("Little Monkeys", 99999, 3),
 ("A outra do REM", 0, 5),
 ("Esquentar Paozinho", 10.99,3);
+
+UPDATE user SET name = "Luis Eduardo Freire da Camara" WHERE user_id = 5;
