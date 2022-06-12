@@ -1,8 +1,8 @@
 # Trabalho 01 - Banco de Dados
 
 Feito pelos alunos: 
-  Danilo Erler Lima (@daniloelima)
-  Enzo Baioco Cussuol (@enzocussuol)
+  Danilo Erler Lima ([@daniloelima](https://github.com/daniloelima))
+  Enzo Baioco Cussuol ([@enzocussuol](https://github.com/enzocussuol))
   
 O projeto envolve a criação de uma API-REST envolvendo o uso de um banco de dados em mysql, tendo sido inspirado no [desafio picpay](https://github.com/PicPay/picpay-desafio-backend), embora não tenha sido seguido a risca.
 
