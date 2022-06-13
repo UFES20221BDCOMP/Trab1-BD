@@ -2,9 +2,16 @@ package ufes.trab1BD.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Purchase {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public int purchase_id;
+
     @Column
     public int user_id;
 

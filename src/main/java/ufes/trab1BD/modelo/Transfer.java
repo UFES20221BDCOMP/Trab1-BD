@@ -2,9 +2,16 @@ package ufes.trab1BD.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Transfer {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public int transfer_id;
+
 	@Column
     public int payer;
 
