@@ -13,8 +13,22 @@ public class ControladoresAPI {
     @Autowired
     private UserRepo userRepo;
 
+    @GetMapping("/")
+    public String home(){
+        return "Hello World!";
+    }
+
     @GetMapping("/users")
     public List<User> getUsers(){
         return userRepo.findAll();
     }
+
+    @GetMapping("/users/{id}")
+    public List<User> getSpecificUser(int id){
+        List<User> usuarios = userRepo.findAll();
+        System.out.println(usuarios);
+
+        return userRepo.findAll();
+    }
+    
 }
