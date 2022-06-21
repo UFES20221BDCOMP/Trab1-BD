@@ -1,13 +1,17 @@
 package ufes.trab1BD.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@JsonIgnoreProperties(value = {"user_id"})
 @Entity
 public class User {
+	@JsonIgnore
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     public int user_id;
@@ -20,6 +24,10 @@ public class User {
 
     @Column
     public float balance;
+
+	public User(){
+		
+	}
 
 	public int getUser_id() {
 		return this.user_id;
@@ -53,4 +61,15 @@ public class User {
 		this.balance = balance;
 	}
 
+	@Override
+	public String toString(){
+		String str = "";
+
+		str += "user_id: " + this.user_id + "\n";
+		str += "name: " + this.name + "\n";
+		str += "date_of_birth: " + this.date_of_birth + "\n";
+		str += "balance: " + this.balance + "\n";
+
+		return str;
+	}
 }

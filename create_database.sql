@@ -50,12 +50,6 @@ ADD FOREIGN KEY (payer) REFERENCES user(user_id) ON DELETE cascade;
 ALTER TABLE transfer
 ADD FOREIGN KEY (payee) REFERENCES user(user_id) ON DELETE cascade;
 
-ALTER TABLE user
-ADD CHECK balance > 0;
-
-ALTER TABLE store
-ADD CHECK balance > 0;
-
 INSERT INTO user (name, date_of_birth, balance) VALUES
 ("Danilo Erler Lima", "2001-03-03", 0),
 ("Enzo Baioco Cussuol", "2001-01-11", 99.99),
