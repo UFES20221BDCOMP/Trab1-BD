@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Transfer {
@@ -12,11 +14,13 @@ public class Transfer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int transfer_id;
 
-	@Column
-    public int payer;
+	@ManyToOne
+	@JoinColumn(name = "payer_id")
+    public User payer;
 
-	@Column
-    public int payee;
+	@ManyToOne
+	@JoinColumn(name = "payee_id")
+    public User payee;
 
 	@Column
     public float value;
@@ -24,19 +28,31 @@ public class Transfer {
 	@Column
     public String date;
 
-	public int getPayer() {
+	public Transfer(){
+		
+	}
+
+	public int getTransfer_id() {
+		return this.transfer_id;
+	}
+
+	public void setTransfer_id(int transfer_id) {
+		this.transfer_id = transfer_id;
+	}
+
+	public User getPayer() {
 		return this.payer;
 	}
 
-	public void setPayer(int payer) {
+	public void setPayer(User payer) {
 		this.payer = payer;
 	}
 
-	public int getPayee() {
+	public User getPayee() {
 		return this.payee;
 	}
 
-	public void setPayee(int payee) {
+	public void setPayee(User payee) {
 		this.payee = payee;
 	}
 

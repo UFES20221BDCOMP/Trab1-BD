@@ -10,7 +10,8 @@ import ufes.trab1BD.modelo.User;
 public interface UserRepo extends JpaRepository<User, Long>{
     @Query(nativeQuery = true, value = 
             "SELECT * " +
-            "FROM user")
+            "FROM user " +
+            "ORDER BY user_id")
     List<User> getUsers();
 
     @Query(nativeQuery = true, value =

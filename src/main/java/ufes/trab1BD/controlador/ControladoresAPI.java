@@ -16,6 +16,12 @@ public class ControladoresAPI {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired 
+    private TransferRepo transferRepo;
+
+    @Autowired
+    private PurchaseRepo purchaseRepo;
+
     @GetMapping("/users")
     public List<User> getUsers(){
         return userRepo.getUsers();
@@ -23,14 +29,22 @@ public class ControladoresAPI {
 
     @GetMapping("/users/getById")
     public User getUserById(@RequestParam int user_id){
-        System.out.println(user_id);
         return userRepo.getUserById(user_id);
     }
     
     @GetMapping("/users/getByName")
     public List<User> getUsersByName(@RequestParam String name){
-        System.out.println(name);
         return userRepo.getUsersByName(name);
+    }
+
+    @GetMapping("/users/purchases")
+    public List<Purchase> getPurchasesByUserId(@RequestParam int user_id){
+        return purchaseRepo.getPurchasesByUserId(user_id);
+    }
+
+    @GetMapping("/users/transfers")
+    public List<Transfer> getTransfersByUserId(@RequestParam int user_id){
+        return transferRepo.getTransfersByUserId(user_id);
     }
 
     @PostMapping("/users/new")

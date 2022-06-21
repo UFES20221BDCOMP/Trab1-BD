@@ -3,6 +3,8 @@ package ufes.trab1BD;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
+
 @SpringBootApplication
 public class Trab1BdApplication {
 

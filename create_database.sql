@@ -1,4 +1,3 @@
-DROP SCHEMA picpayDB;
 CREATE SCHEMA picpayDB;
 USE picpayDB;
 
@@ -19,21 +18,22 @@ CREATE TABLE store(
 );
 
 CREATE TABLE purchase(
+    purchase_id int not null auto_increment,
 	user_id int,
     store_id int,
     value float,
     date date,
-    primary key (user_id, store_id, date)
+    primary key (purchase_id)
 );
 
 CREATE TABLE transfer(
-	payer int,
-    payee int,
+    transfer_id int not null auto_increment,
+	payer_id int,
+    payee_id int,
     value float,
     date date,
-    primary key (payer, payee, date)
+    primary key (transfer_id)
 );
-
 
 ALTER TABLE store 
 ADD FOREIGN KEY (owner_id) REFERENCES user(user_id) ON DELETE set null;
@@ -45,10 +45,10 @@ ALTER TABLE purchase
 ADD FOREIGN KEY (store_id) REFERENCES store(store_id) ON DELETE cascade;
 
 ALTER TABLE transfer
-ADD FOREIGN KEY (payer) REFERENCES user(user_id) ON DELETE cascade;
+ADD FOREIGN KEY (payer_id) REFERENCES user(user_id) ON DELETE cascade;
 
 ALTER TABLE transfer
-ADD FOREIGN KEY (payee) REFERENCES user(user_id) ON DELETE cascade;
+ADD FOREIGN KEY (payee_id) REFERENCES user(user_id) ON DELETE cascade;
 
 INSERT INTO user (name, date_of_birth, balance) VALUES
 ("Danilo Erler Lima", "2001-03-03", 0),
@@ -58,7 +58,6 @@ INSERT INTO user (name, date_of_birth, balance) VALUES
 ("Luis Eduardo da Camara Freire", "2000-11-29", 50.0),
 ("Igor Mattos Varejão","2001-01-28", 1001),
 ("Miguel de Oliveira Carlini", "2001-09-06", 300);
-
 
 INSERT INTO store (name, balance, owner_id) VALUES
 ("Descartech", 0, 2),

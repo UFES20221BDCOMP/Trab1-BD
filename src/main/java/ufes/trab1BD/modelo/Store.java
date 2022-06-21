@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Store {
@@ -18,8 +20,13 @@ public class Store {
 	@Column
     public float balance;
 
-	@Column
-    public int owner_id;
+	@ManyToOne
+	@JoinColumn(name = "owner_id")
+    public User owner;
+
+	public Store(){
+		
+	}
 
 	public int getStore_id() {
 		return this.store_id;
@@ -45,12 +52,12 @@ public class Store {
 		this.balance = balance;
 	}
 
-	public int getOwner_id() {
-		return this.owner_id;
+	public User getOwner() {
+		return this.owner;
 	}
 
-	public void setOwner_id(int owner_id) {
-		this.owner_id = owner_id;
+	public void setOwner(User owner) {
+		this.owner = owner;
 	}
 
 }

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Purchase {
@@ -12,11 +14,13 @@ public class Purchase {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int purchase_id;
 
-    @Column
-    public int user_id;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+    public User user;
 
-    @Column
-    public int store_id;
+    @ManyToOne
+	@JoinColumn(name = "store_id")
+    public Store store;
 
     @Column
     public float value;
@@ -24,20 +28,32 @@ public class Purchase {
     @Column
     public String date;
 
-	public int getUser_id() {
-		return this.user_id;
+	public Purchase(){
+		
 	}
 
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public int getPurchase_id() {
+		return this.purchase_id;
 	}
 
-	public int getStore_id() {
-		return this.store_id;
+	public void setPurchase_id(int purchase_id) {
+		this.purchase_id = purchase_id;
 	}
 
-	public void setStore_id(int store_id) {
-		this.store_id = store_id;
+	public User getUser() {
+		return this.user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Store getStore() {
+		return this.store;
+	}
+
+	public void setStore(Store store) {
+		this.store = store;
 	}
 
 	public float getValue() {
