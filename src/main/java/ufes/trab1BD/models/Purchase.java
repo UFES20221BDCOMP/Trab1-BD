@@ -1,4 +1,4 @@
-package ufes.trab1BD.modelo;
+package ufes.trab1BD.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
