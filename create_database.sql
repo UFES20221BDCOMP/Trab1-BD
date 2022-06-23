@@ -1,3 +1,4 @@
+DROP SCHEMA picpayDB;
 CREATE SCHEMA picpayDB;
 USE picpayDB;
 
