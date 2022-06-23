@@ -1,4 +1,20 @@
+version: "3"
 services:
-  maven:
-    image: maven
-    
+  mysqldb:
+    image: "mysql:5.7"
+    environment:
+      - MYSQL_DATABASE=picpayDB
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
+    ports:
+      - "3307:3306"
+  springboot-docker-container:
+    image: springboot-docker-container
+    ports:
+      - "8080:8080"
+    build:
+      context: "."
+      dockerfile: "Dockerfile"
+    depends_on:
+      - mysqldb
