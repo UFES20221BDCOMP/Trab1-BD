@@ -1,5 +1,9 @@
 package ufes.trab1BD.controlador;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ufes.trab1BD.modelo.*;
 import ufes.trab1BD.repo.*;
+
 
 @RestController
 public class ControladoresAPI {
@@ -22,6 +27,15 @@ public class ControladoresAPI {
     @Autowired
     private PurchaseRepo purchaseRepo;
 
+    @Operation(summary = "Retorna todos os usuarios cadastrados")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+            description = "Todos os usuarios retornados com sucesso",
+            content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode = "404",
+            description = "Erro ao retornar usuarios",
+            content = @Content)
+    })
     @GetMapping("/users")
     public List<User> getUsers(){
         return userRepo.getUsers();
