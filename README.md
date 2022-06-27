@@ -14,7 +14,7 @@ Para executar a api primeiro é necessário [baixar a aplicação](https://githu
 sudo bash run.sh
 ```
 
-Após isso, esperar as dependencias do maven e do banco serem criadas (Pode demorar um pouco), após criadas e o banco em execução acessar em seu navegador a [página de documentação](http://localhost:8080/swagger-ui/index.html) fornecida pelo spring.
+Após isso, esperar as dependencias do maven e do banco serem criadas (Pode demorar um pouco), ao fim do processo com a api em execução acessar em seu navegador a [página de documentação](http://localhost:8080/swagger-ui/index.html) fornecida pelo spring e utilizar das requisições desejadas.
 
 
 ## Banco de Dados
