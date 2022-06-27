@@ -11,8 +11,11 @@ O projeto envolve a criação de uma API-REST envolvendo o uso de um banco de da
 Para executar a api primeiro é necessário [baixar a aplicação](https://github.com/UFES20221BDCOMP/Trab1-BD/archive/refs/heads/main.zip) e extrair na pasta desejada, após isso executar no terminal (dentro da pasta deszipada) o comando:
 
 ```
-./run.sh
+sudo bash run.sh
 ```
+
+Após isso, esperar as dependencias do maven e do banco serem criadas (Pode demorar um pouco), após criadas e o banco em execução acessar em seu navegador a [página de documentação](http://localhost:8080/swagger-ui/index.html) fornecida pelo spring.
+
 
 ## Banco de Dados
 
