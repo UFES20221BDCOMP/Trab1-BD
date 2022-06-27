@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 import ufes.trab1BD.models.Store;
-import ufes.trab1BD.models.User;
 
 public interface StoreRepo extends JpaRepository<Store, Long>{
     @Query(nativeQuery = true, value = 
@@ -21,22 +20,26 @@ public interface StoreRepo extends JpaRepository<Store, Long>{
         "WHERE store_id = (:store_id)")
     Store readStoreById(int store_id);
 
+    @Query(nativeQuery = true, value =
+        "SELECT * " +
+        "FROM store " +
+        "WHERE owner_id = (:owner_id)")
+    List<Store> readStoresByOwner(int owner_id);
+
     @Transactional
     @Modifying
     @Query(nativeQuery = true, value =
-        "INSERT INTO store (name, balance, owner) VALUES (:name, :balance, :owner)")
-    void createStore(String name, float balance, User owner);
-
+        "INSERT INTO store (name, balance, owner_id) VALUES (:name, :balance, :owner_id)")
+    void createStore(String name, float balance, int owner_id);
+    
     @Transactional
     @Modifying
     @Query(nativeQuery = true, value = 
         "UPDATE store " +
         "SET " +
-        "name = (:name), " +
-        "balance = (:balance), " +
-        "owner = (:owner) " +
+        "balance = (:balance) " +
         "WHERE store_id = (:store_id)")
-    void updateStore(int store_id, String name, float balance, User owner);
+    void updateStoreBalance(int store_id, float balance);
 
     @Transactional
     @Modifying

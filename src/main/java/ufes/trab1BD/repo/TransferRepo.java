@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 import ufes.trab1BD.models.Transfer;
-import ufes.trab1BD.models.User;
 
 public interface TransferRepo extends JpaRepository<Transfer, Long>{
     @Query(nativeQuery = true, value = 
@@ -24,20 +23,8 @@ public interface TransferRepo extends JpaRepository<Transfer, Long>{
     @Transactional
     @Modifying
     @Query(nativeQuery = true, value =
-        "INSERT INTO transfer (payer, payee, value, date) VALUES (:payer, :payee, :value, :date)")
-    void createTransfer(User payer, User payee, float value, String date);
-
-    @Transactional
-    @Modifying
-    @Query(nativeQuery = true, value = 
-        "UPDATE transfer " +
-        "SET " +
-        "payer = (:payer), " +
-        "payee = (:payee), " +
-        "value = (:value), " +
-        "date = (:date) " +
-        "WHERE transfer_id = (:transfer_id)")
-    void updateTransfer(int transfer_id, User payer, User payee, float value, String date);
+        "INSERT INTO transfer (payer_id, payee_id, value, date) VALUES (:payer_id, :payee_id, :value, :date)")
+    void createTransfer(int payer_id, int payee_id, float value, String date);
 
     @Transactional
     @Modifying
@@ -45,5 +32,5 @@ public interface TransferRepo extends JpaRepository<Transfer, Long>{
         "DELETE " +
         "FROM transfer " +
         "WHERE transfer_id = (:transfer_id)")
-    void deleteTransfer(int transfer_id);
+    void cancelTransfer(int transfer_id);
 }

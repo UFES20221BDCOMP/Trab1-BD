@@ -23,19 +23,17 @@ public interface UserRepo extends JpaRepository<User, Long>{
     @Transactional
     @Modifying
     @Query(nativeQuery = true, value =
-        "INSERT INTO user (name, date_of_birth, balance) VALUES (:name, :date_of_birth, :balance)")
-    void createUser(String name, String date_of_birth, float balance);
+        "INSERT INTO user (name, document, date_of_birth, balance) VALUES (:name, :document, :date_of_birth, :balance)")
+    void createUser(String name, String document, String date_of_birth, float balance);
 
     @Transactional
     @Modifying
     @Query(nativeQuery = true, value = 
         "UPDATE user " +
         "SET " +
-        "name = (:name), " +
-        "date_of_birth = (:date_of_birth), " +
         "balance = (:balance) " +
         "WHERE user_id = (:user_id)")
-    void updateUser(int user_id, String name, String date_of_birth, float balance);
+    void updateUserBalance(int user_id, float balance);
 
     @Transactional
     @Modifying

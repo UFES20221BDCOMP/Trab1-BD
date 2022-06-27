@@ -27,16 +27,11 @@ Dentre as requisições projetadas pela API temos:
 
 Referentes aos usuários
 ```
-    /users                             -> Retorna todos usuários do banco, ordenados por id
-    /users/{user_id}                   -> Retorna ados do usuários especificado
-    /users/{name}                      -> Retorna lista de usuários com nome especificado
-    /users/{user_id}/purchases         -> Retorna todas compras realizadas pelo usuario especificado
-    /users/{user_id}/transfers         -> Retorna todas transferencias realizadas e recebidas pelo usuario especificado
-    /users/{user_id}/transactions      -> Retorna todas compras e transferencias realizadas e recebidas pelo usuario especificado
-    /users/{user_id}/stores            -> Retorna lista das lojas do usuario especificado
-    
-    /users/new?{params}                -> Insere um novo usuário no banco
-    /users/{user_id}/update?{params}   -> Atualiza um usuario do banco
+    /users/create                                       -> Insere um novo usuário no banco
+    /users/read                                         -> Retorna todos usuários do banco, ordenados por id
+    /users/read/{user_id}                               -> Retorna dados do usuários especificado
+    /users/update/{user_id}/updateBalance/{value}       -> Atualiza o saldo do usuario especificado (insere se > 0  remove se < 0)
+    /users/delete/{user_id}                             -> Retorna lista das lojas do usuario especificado
 ```
 
 Referentes as Lojas

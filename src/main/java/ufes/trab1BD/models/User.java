@@ -12,6 +12,9 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     public int user_id;
 
+	@Column
+	public String document;
+
     @Column
     public String name;
 
@@ -31,6 +34,14 @@ public class User {
 
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
+	}
+
+	public String getDocument() {
+		return this.document;
+	}
+
+	public void setDocument(String document) {
+		this.document = document;
 	}
 
 	public String getName() {

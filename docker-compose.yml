@@ -12,6 +12,7 @@ services:
     volumes:
       - "./create_database.sql:/docker-entrypoint-initdb.d/create_database.sql"
   spring-boot-app:
+    restart: "always"
     build:
       context: "./"
       dockerfile: "Dockerfile"

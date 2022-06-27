@@ -6,8 +6,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 import ufes.trab1BD.models.Purchase;
-import ufes.trab1BD.models.Store;
-import ufes.trab1BD.models.User;
 
 public interface PurchaseRepo extends JpaRepository<Purchase, Long>{
     @Query(nativeQuery = true, value = 
@@ -25,20 +23,8 @@ public interface PurchaseRepo extends JpaRepository<Purchase, Long>{
     @Transactional
     @Modifying
     @Query(nativeQuery = true, value =
-        "INSERT INTO purchase (user, store, value, date) VALUES (:user, :store, :value, :date)")
-    void createPurchase(User user, Store store, float value, String date);
-
-    @Transactional
-    @Modifying
-    @Query(nativeQuery = true, value = 
-        "UPDATE purchase " +
-        "SET " +
-        "user = (:user), " +
-        "store = (:store), " +
-        "value = (:value), " +
-        "date = (:date) " +
-        "WHERE purchase_id = (:purchase_id)")
-    void updatePurchase(int purchase_id, User user, Store store, float value, String date);
+        "INSERT INTO purchase (user_id, store_id, value, date) VALUES (:user_id, :store_id, :value, :date)")
+    void createPurchase(int user_id, int store_id, float value, String date);
 
     @Transactional
     @Modifying
@@ -46,5 +32,5 @@ public interface PurchaseRepo extends JpaRepository<Purchase, Long>{
         "DELETE " +
         "FROM purchase " +
         "WHERE purchase_id = (:purchase_id)")
-    void deletePurchase(int purchase_id);
+    void cancelPurchase(int purchase_id);
 }
