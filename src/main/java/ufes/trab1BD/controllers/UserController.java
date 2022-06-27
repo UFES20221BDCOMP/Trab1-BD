@@ -44,6 +44,7 @@ public class UserController {
         return ResponseEntity.ok("Usuário criado com sucesso");
     }
 
+    @Operation(summary = "Atualiza o saldo do usuario especificado (Valores Positivos inserem, negativos removem)")
     @PutMapping("/users/update/{user_id}/updateBalance/{value}")
     public ResponseEntity<String> updateUserBalance(@PathVariable int user_id, @PathVariable int value){
         User user = userRepo.readUserById(user_id);

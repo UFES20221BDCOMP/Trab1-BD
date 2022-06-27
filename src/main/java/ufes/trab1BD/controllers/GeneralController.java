@@ -1,5 +1,9 @@
 package ufes.trab1BD.controllers;
 
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,14 +37,24 @@ public class GeneralController {
     }
 
     @GetMapping("/Richest")
-    public String readRichest(){
-        return generalRepo.readRichest();
+    public Map<String, Object> readRichest(){
+        List<Object[]> rich_list = generalRepo.findRichest();
+        Object[] richest = rich_list.get(0); //pega o primeiro da lista
+
+        Map<String, Object> json = new LinkedHashMap();
+        json.put("user_id", richest[0]);
+        json.put("name", richest[1]);
+        json.put("total_balance", richest[2]);
+
+        return json;
     }
 
     @GetMapping("/Money")
-    public float readMoney(){
-        //criar
-        //Float value = generalRepo.getMoney()//
-        return 0; //return value;
+    public Map<String, String> readMoney(){
+        Map<String, String> json = new LinkedHashMap();
+
+        json.put("money", generalRepo.readMoney().toString());
+
+        return json;
     }
 }
