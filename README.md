@@ -37,7 +37,7 @@ Essa é uma página de documentação interativa gerada a partir da biblioteca [
 Nós encorajamos o uso da API a partir da página de documentação, uma vez que a experiência torna-se mais intuitiva. Porém, também preparamos alguns testes unitários básicos utilizando o [jUnit](https://junit.org/junit5/). Esses testes podem ser executados diretamente no container da aplicação. Para isso, rode em outro terminal o comando:
 
 ```
-docker exec -it trab1-bd-10_spring-boot-app_1 mvn test
+docker exec -it trab1-bd-01_spring-boot-app_1 mvn test
 ```
 
 ## Banco de Dados
