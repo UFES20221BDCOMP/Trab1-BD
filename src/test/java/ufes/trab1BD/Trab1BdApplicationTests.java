@@ -99,7 +99,7 @@ class Trab1BdApplicationTests {
 
 		assertThat(tam2).isGreaterThan(tam1);
 	}
-	
+
 	@Test
 	@Order(5)
 	public void testCancelPurchase(){
