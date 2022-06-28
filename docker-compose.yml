@@ -1,4 +1,4 @@
-version: "3.3"
+version: "2.1"
 services:
   mysqldb:
     image: "mysql:5.7"
@@ -12,7 +12,6 @@ services:
     volumes:
       - "./create_database.sql:/docker-entrypoint-initdb.d/create_database.sql"
   spring-boot-app:
-    restart: "always"
     build:
       context: "./"
       dockerfile: "Dockerfile"
@@ -22,5 +21,6 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/picpayDB?autoReconnect=true&useSSL=false
       SPRING_DATASOURCE_USERNAME: "picpay"
       SPRING_DATASOURCE_PASSWORD: "picpay"
+    restart: on-failure
     depends_on:
       - mysqldb

@@ -1,4 +1,4 @@
-FROM openjdk:11
-ADD target/trab1BD-0.0.1-SNAPSHOT.jar app.jar
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+FROM maven:3.8-jdk-11
+COPY . .
+CMD mvn clean install
+CMD mvn spring-boot:run
