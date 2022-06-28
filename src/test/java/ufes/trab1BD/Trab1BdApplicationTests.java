@@ -99,33 +99,16 @@ class Trab1BdApplicationTests {
 
 		assertThat(tam2).isGreaterThan(tam1);
 	}
-
+	
 	@Test
 	@Order(5)
-	public void testCancelPurchase(){
-		List<Purchase> listPurchases = purchaseRepo.readPurchases();
-		if(listPurchases.isEmpty()) return;
-		Purchase purchase = listPurchases.get(0);
-		int purchase_id = purchase.getPurchase_id();
-
-		User user = purchase.getUser();
-		float saldoAntes = user.getBalance();
-
-		purchaseRepo.cancelPurchase(purchase_id);
-
-		float saldoDepois = user.getBalance();
-		assertThat(saldoDepois).isGreaterThan(saldoAntes);
-	}
-
-	@Test
-	@Order(6)
 	public void testGetRichest(){
 		List<Object[]> rich_list = generalRepo.findRichest();
 		assertThat(rich_list).isNotNull();
 	}
 
 	@Test
-	@Order(7)
+	@Order(6)
 	public void testGetMoney(){
 		float app_money = generalRepo.readMoney();
 		assertThat(app_money).isNotNull();
