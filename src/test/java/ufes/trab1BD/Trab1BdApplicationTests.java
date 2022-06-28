@@ -38,14 +38,14 @@ class Trab1BdApplicationTests {
 	TransferRepo transferRepo;
 
 	@Test
-	@Order(1)
+	@Order(2)
 	public void testExistUsers(){
 		List<User> list = userRepo.readUsers();
 		assertThat(list).isNotNull();
 	}
 	
 	@Test
-	@Order(2)
+	@Order(1)
 	public void testNewUser(){
 		List<User> list1 = userRepo.readUsers();
 		int tam1 = list1.size();
@@ -104,6 +104,7 @@ class Trab1BdApplicationTests {
 	@Order(5)
 	public void testCancelPurchase(){
 		List<Purchase> listPurchases = purchaseRepo.readPurchases();
+		if(listPurchases.isEmpty()) return;
 		Purchase purchase = listPurchases.get(0);
 		int purchase_id = purchase.getPurchase_id();
 
