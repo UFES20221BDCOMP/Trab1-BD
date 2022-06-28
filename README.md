@@ -4,18 +4,41 @@ Feito pelos alunos:
   Danilo Erler Lima ([@daniloelima](https://github.com/daniloelima))
   Enzo Baioco Cussuol ([@enzocussuol](https://github.com/enzocussuol))
   
-O projeto envolve a criação de uma API-REST envolvendo o uso de um banco de dados em mysql, tendo sido inspirado no [desafio picpay](https://github.com/PicPay/picpay-desafio-backend), embora não tenha sido seguido a risca.
+O projeto envolve a criação de uma API-REST envolvendo o uso de um banco de dados, tendo sido inspirado no [desafio picpay](https://github.com/PicPay/picpay-desafio-backend), embora não tenha sido seguido a risca.
+
+## Tecnologias Utilizadas
+
+Para o desenvolvimento da API-REST, utilizamos a linguagem Java e o framework Spring-Boot. Para organização do projeto foi utilizado o Maven.
+
+Com relação ao banco de dados, utilizamos o MYSQL.
+
+A conexão entre a aplicação e o banco é feita através de consultas nativas, as quais podem ser encontradas no pacote "repo" dentro do código-fonte.
 
 ## Execução
 
-Para executar a api primeiro é necessário [baixar a aplicação](https://github.com/UFES20221BDCOMP/Trab1-BD/archive/refs/heads/main.zip) e extrair na pasta desejada, após isso executar no terminal (dentro da pasta deszipada) o comando:
+Para executar a API primeiro é necessário [baixar a aplicação](https://github.com/UFES20221BDCOMP/Trab1-BD/archive/refs/heads/main.zip) e extrair na pasta desejada, após isso executar no terminal (dentro da pasta deszipada) o comando:
 
 ```
-sudo bash run.sh
+docker-compose up
 ```
 
-Após isso, esperar as dependencias do maven e do banco serem criadas (Pode demorar um pouco), ao fim do processo com a api em execução acessar em seu navegador a [página de documentação](http://localhost:8080/swagger-ui/index.html) fornecida pelo spring e utilizar das requisições desejadas.
+Esse comando irá gerar os dois containers do sistema, o da aplicação e o do banco de dados MYSQL. Ele pode demorar pois irá baixar todas as dependências para o Maven e para o MYSQL funcionarem, além de fazer o build da aplicação.
 
+Após o comando ser executado, a aplicação e o banco de dados estarão de pé. Note que nós executamos um script de criação das tabelas e preenchimento de alguns dados no banco logo após ele ser inicializado.
+
+Para acessar a aplicação, basta acessar no navegador a página de documentação da nossa API, a qual irá mostrar todas as requisições que são possíveis de serem realizadas e o que cada uma faz:
+
+```
+http://localhost:8080/swagger-ui/index.html
+```
+
+Essa é uma página de documentação interativa gerada a partir da biblioteca [springdoc](https://springdoc.org/).
+
+Nós encorajamos o uso da API a partir da página de documentação, uma vez que a experiência torna-se mais intuitiva. Porém, também preparamos alguns testes unitários básicos utilizando o [jUnit](https://junit.org/junit5/). Esses testes podem ser executados diretamente no container da aplicação com o comando:
+
+```
+docker exec -it <nomeContainer> mvn test
+```
 
 ## Banco de Dados
 

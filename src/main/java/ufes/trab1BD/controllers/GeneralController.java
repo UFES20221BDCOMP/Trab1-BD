@@ -1,34 +1,20 @@
 package ufes.trab1BD.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import ufes.trab1BD.repo.GeneralRepo;
-//import ufes.trab1BD.repo.UserRepo;
 
 @RestController
 public class GeneralController {
     @Autowired
     private GeneralRepo generalRepo;
-
-    // @Autowired
-    // private UserRepo userRepo;
     
-    // @Autowired
-    // private StoreRepo storeRepo;
-    
-    // @Autowired
-    // private PurchaseRepo purchaseRepo;
-    
-    // @Autowired 
-    // private TransferRepo transferRepo;
-
-    
+    @Operation(summary = "Retorna um link para a documentação da API")
     @GetMapping("/")
     public String redirectSwagger(){
         String myURL = "<HTML><body> <a href=\"http://localhost:8080/swagger-ui/index.html\">Swagger Page</a></body></HTML>";
@@ -36,7 +22,8 @@ public class GeneralController {
         return myURL;
     }
 
-    @GetMapping("/Richest")
+    @Operation(summary = "Retorna o usuário mais rico do sistema")
+    @GetMapping("/richest")
     public Map<String, Object> readRichest(){
         List<Object[]> rich_list = generalRepo.findRichest();
         Object[] richest = rich_list.get(0); //pega o primeiro da lista
@@ -49,7 +36,8 @@ public class GeneralController {
         return json;
     }
 
-    @GetMapping("/Money")
+    @Operation(summary = "Retorna a quantidade total de dinheiro do sistema")
+    @GetMapping("/money")
     public Map<String, String> readMoney(){
         Map<String, String> json = new LinkedHashMap();
 
